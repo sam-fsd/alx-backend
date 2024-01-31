@@ -19,7 +19,6 @@ class FIFOCache(BaseCaching):
         Initializes a FIFO cache object.
         """
         super().__init__()
-        self.order = []
 
     def put(self, key=None, item=None):
         """
@@ -32,16 +31,13 @@ class FIFOCache(BaseCaching):
         Returns:
             None
         """
-        if key is None or item is None:
-            pass
-        else:
-            length = len(self.cache_data)
-            if length >= BaseCaching.MAX_ITEMS:
-                print("DISCARD: {}".format(self.order[0]))
-                del self.cache_data[self.order[0]]
-                del self.order[0]
-            self.order.append(key)
+        if key and item:
             self.cache_data[key] = item
+            length = len(self.cache_data)
+            if length > BaseCaching.MAX_ITEMS:
+                first = list(self.cache_data.keys())[0]
+                del self.cache_data[first]
+                print(f'DISCARD {first}')
 
     def get(self, key):
         """ Retrieve item from cache
