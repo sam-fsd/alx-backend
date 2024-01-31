@@ -30,13 +30,5 @@ class BasicCache(BaseCaching):
     def get(self, key):
         """
         Retrieve an item from the cache.
-
-        Args:
-            key: The key associated with the item.
-
-        Returns:
-            The item associated with the key, or None if the key is not found.
         """
-        if key is not None and key in self.cache_data:
-            return self.cache_data.get(key)
-        return None
+        return super().get(key)

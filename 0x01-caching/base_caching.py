@@ -29,7 +29,15 @@ class BaseCaching():
             "put must be implemented in your cache class")
 
     def get(self, key):
-        """ Get an item by key
         """
-        raise NotImplementedError(
-            "get must be implemented in your cache class")
+        Retrieve an item from the cache.
+
+        Args:
+            key: The key associated with the item.
+
+        Returns:
+            The item associated with the key, or None if the key is not found.
+        """
+        if key is not None and key in self.cache_data:
+            return self.cache_data.get(key)
+        return None
