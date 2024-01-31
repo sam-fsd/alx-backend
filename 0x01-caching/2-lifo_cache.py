@@ -37,18 +37,16 @@ class LIFOCache(BaseCaching):
             key: The key of the item.
             item: The item to be added to the cache.
         """
-        length = len(self.cache_data)
-        if length >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
-            print("DISCARD: {}".format(self.order[-1]))
-            del self.cache_data[self.order[-1]]
-            del self.order[-1]
-        self.order.append(key)
-        self.cache_data[key] = item
+        if key and item:
+            length = len(self.cache_data)
+            if length >= BaseCaching.MAX_ITEMS:
+                print("DISCARD: {}".format(self.order[-1]))
+                del self.cache_data[self.order[-1]]
+                del self.order[-1]
+            self.order.append(key)
+            self.cache_data[key] = item
 
     def get(self, key):
+        """ Retrieve item from cache
         """
-        Return the value linked to a given key, or None
-        """
-        if key is not None and key in self.cache_data.keys():
-            return self.cache_data[key]
-        return None
+        return super().get(key)
