@@ -15,6 +15,9 @@ class FIFOCache(BaseCaching):
     """
 
     def __init__(self):
+        """
+        Initializes a FIFO cache object.
+        """
         super().__init__()
         self.order = []
 
