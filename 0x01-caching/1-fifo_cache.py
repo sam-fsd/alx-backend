@@ -33,12 +33,10 @@ class FIFOCache(BaseCaching):
         """
         if key and item:
             self.cache_data[key] = item
-            length = len(self.cache_data)
-
-            if length > BaseCaching.MAX_ITEMS:
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
                 first = list(self.cache_data.keys())[0]
                 del self.cache_data[first]
-                print(f'DISCARD {first}')
+                print("DISCARD: {}".format(first))
 
     def get(self, key):
         """ Retrieve item from cache
