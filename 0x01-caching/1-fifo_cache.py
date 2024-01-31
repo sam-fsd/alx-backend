@@ -36,7 +36,7 @@ class FIFOCache(BaseCaching):
             pass
         else:
             length = len(self.cache_data)
-            if length >= BaseCaching.MAX_ITEMS and key not in self.cache_data:
+            if length >= BaseCaching.MAX_ITEMS:
                 print("DISCARD: {}".format(self.order[0]))
                 del self.cache_data[self.order[0]]
                 del self.order[0]
