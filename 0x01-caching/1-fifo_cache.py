@@ -34,6 +34,7 @@ class FIFOCache(BaseCaching):
         if key and item:
             self.cache_data[key] = item
             length = len(self.cache_data)
+
             if length > BaseCaching.MAX_ITEMS:
                 first = list(self.cache_data.keys())[0]
                 del self.cache_data[first]
@@ -42,4 +43,6 @@ class FIFOCache(BaseCaching):
     def get(self, key):
         """ Retrieve item from cache
         """
-        return super().get(key)
+        if key is not None and key in self.cache_data:
+            return self.cache_data.get(key)
+        return None
