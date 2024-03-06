@@ -15,16 +15,16 @@ client.on('connect', () => {
 const channelName = 'holberton school channel';
 client.subscribe(channelName, (err, count) => {
   if (err) {
-    console.error("Error subscribing to channel:", err);
+    console.error('Error subscribing to channel:', err);
   } else {
     console.log(`Subscribed to channel: ${channelName} (count: ${count})`);
   }
 });
 
-client.on("message", (channel, message) => {
+client.on('message', (channel, message) => {
   if (channel === channelName) {
     console.log(message);
-    if (message === "KILL_SERVER") {
+    if (message === 'KILL_SERVER') {
       client.unsubscribe(channelName);
       client.end(true);
     }
