@@ -12,11 +12,11 @@ client.on('connect', () => {
   console.log('Redis client connected to the server');
 });
 
-function setNewSchool(schoolName, value) {
+function setNewSchool (schoolName, value) {
   client.set(schoolName, value, print);
 }
-function displaySchoolValue(schoolName) {
-  client.get(schoolName, function(error, result) {
+function displaySchoolValue (schoolName) {
+  client.get(schoolName, function (error, result) {
     if (error) {
       console.log(error);
       throw error;
